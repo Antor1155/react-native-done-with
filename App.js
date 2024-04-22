@@ -1,10 +1,11 @@
-import { StatusBar } from "expo-status-bar";
+import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import {
   Alert,
   Button,
   Image,
   Platform,
   SafeAreaView,
+  StatusBar,
   StyleSheet,
   Text,
   TouchableHighlight,
@@ -12,33 +13,16 @@ import {
   TouchableWithoutFeedback,
   View,
 } from "react-native";
-import { getStatusBarHeight } from "react-native-status-bar-height";
 
 export default function App() {
-  const statusBarHeight = () => {
-    if (Platform.OS === "android") {
-      return getStatusBarHeight();
-    }
-    return 0;
-  };
-
   const handlePress = () => {
     console.log("text pressed");
   };
 
   return (
-    <SafeAreaView style={[styles.container, { paddingTop: statusBarHeight() }]}>
-      <StatusBar backgroundColor="dodgerblue" />
-      <Button
-        title="I am a button"
-        onPress={() =>
-          Alert.alert("My title", "button pressed", [
-            { text: "yes", onPress: () => console.log("yes") },
-            { text: "no", onPress: () => console.log("no") },
-            { text: "maybe" },
-          ])
-        }
-      />
+    <SafeAreaView style={styles.container}>
+      <ExpoStatusBar backgroundColor="dodgerblue" />
+      <Text> ola</Text>
     </SafeAreaView>
   );
 }
@@ -46,9 +30,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "dodgerblue",
-    justifyContent: "center",
-    alignItems: "center",
+    backgroundColor: "white",
+    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
   },
 
   text: {
