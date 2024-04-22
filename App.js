@@ -1,5 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import {
+  Alert,
+  Button,
   Image,
   Platform,
   SafeAreaView,
@@ -27,27 +29,15 @@ export default function App() {
   return (
     <SafeAreaView style={[styles.container, { paddingTop: statusBarHeight() }]}>
       <StatusBar backgroundColor="dodgerblue" />
-      <Text style={styles.text} onPress={handlePress}>
-        Hello from native
-      </Text>
-
-      <TouchableHighlight onPress={handlePress}>
-        <View style={{ backgroundColor: "blue", width: 200, height: 100 }}>
-          <Text>TouchAble Button</Text>
-        </View>
-      </TouchableHighlight>
-      <Image
-        blurRadius={10}
-        style={styles.logo}
-        source={require("./assets/icon.png")}
-      />
-      <Image
-        blurRadius={2}
-        source={{
-          width: 200,
-          height: 300,
-          uri: "https://picsum.photos/200/300",
-        }}
+      <Button
+        title="I am a button"
+        onPress={() =>
+          Alert.alert("My title", "button pressed", [
+            { text: "yes", onPress: () => console.log("yes") },
+            { text: "no", onPress: () => console.log("no") },
+            { text: "maybe" },
+          ])
+        }
       />
     </SafeAreaView>
   );
