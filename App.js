@@ -1,25 +1,35 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
-import { SafeAreaProvider } from "react-native-safe-area-context";
+import { Platform, SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { getStatusBarHeight } from "react-native-status-bar-height";
 
 export default function App() {
-  console.log(StatusBar.currentHeight);
+  const statusBarHeight = () => {
+    if (Platform.OS === "android") {
+      return getStatusBarHeight();
+    }
+    return 0;
+  };
+
+  const handlePress = () => {
+    console.log("text pressed");
+  };
+
   return (
-    <SafeAreaProvider>
-      <View style={styles.container}>
-        <Text style={styles.text}>
-          Open up App.js to start working on your app!
-        </Text>
-      </View>
-    </SafeAreaProvider>
+    <SafeAreaView style={[styles.container, { paddingTop: statusBarHeight() }]}>
+      <StatusBar backgroundColor="dodgerblue" />
+      <Text style={styles.text} numberOfLines={1} onPress={handlePress}>
+        Open up App.js to start working on your app!
+      </Text>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "dodgerblue",
   },
+
   text: {
     fontSize: 30,
   },
