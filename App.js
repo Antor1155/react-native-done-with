@@ -5,6 +5,9 @@ import {
   SafeAreaView,
   StyleSheet,
   Text,
+  TouchableHighlight,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
   View,
 } from "react-native";
 import { getStatusBarHeight } from "react-native-status-bar-height";
@@ -28,11 +31,13 @@ export default function App() {
         Hello from native
       </Text>
 
-      <Image
-        blurRadius={10}
-        style={styles.logo}
-        source={require("./assets/icon.png")}
-      />
+      <TouchableHighlight onPress={handlePress}>
+        <Image
+          blurRadius={10}
+          style={styles.logo}
+          source={require("./assets/icon.png")}
+        />
+      </TouchableHighlight>
       <Image
         blurRadius={2}
         source={{
