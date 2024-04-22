@@ -32,12 +32,15 @@ export default function App() {
       </Text>
 
       <TouchableHighlight onPress={handlePress}>
-        <Image
-          blurRadius={10}
-          style={styles.logo}
-          source={require("./assets/icon.png")}
-        />
+        <View style={{ backgroundColor: "blue", width: 200, height: 100 }}>
+          <Text>TouchAble Button</Text>
+        </View>
       </TouchableHighlight>
+      <Image
+        blurRadius={10}
+        style={styles.logo}
+        source={require("./assets/icon.png")}
+      />
       <Image
         blurRadius={2}
         source={{
